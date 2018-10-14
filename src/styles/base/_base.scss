@@ -1,0 +1,18 @@
+//the name has underscore in start that represents partial file 
+//this base file contains basic styling of the application
+html{
+    font-size: 62.5%;
+}
+body {
+    font-family: cursive;
+    font-size:$m-size;
+}
+button{
+    cursor: crosshair;
+}
+button:disabled{
+    cursor: default;
+}
+.is-active{
+    font-weight: bold;
+}
