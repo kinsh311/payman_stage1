@@ -20,9 +20,9 @@ store.subscribe(()=>{
 
 // store.dispatch(setTextFilter('bill'));
 
-store.dispatch(addExpense({ description: 'water bill', amount: 10, createdAt: 100 }));
-store.dispatch(addExpense({ description: 'loan', amount: 220, createdAt: 10 }));
-store.dispatch(addExpense({ description: 'gas bill', amount: 100, createdAt: 120 }));
+// store.dispatch(addExpense({ description: 'water bill', amount: 10, createdAt: 100 }));
+// store.dispatch(addExpense({ description: 'loan', amount: 220, createdAt: 10 }));
+// store.dispatch(addExpense({ description: 'gas bill', amount: 100, createdAt: 120 }));
 
 
 //her we are providing store to react component approuter now approuter has the state accessiblility 
