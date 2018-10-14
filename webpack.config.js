@@ -1,8 +1,12 @@
 //entry point -> output-file
 const path = require('path');
-
-module.exports={
-    entry:'./src/app.js',
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+module.exports = (env) => {
+    const isProduction = env === 'production';
+    const CSSExtract = new ExtractTextPlugin('styles.css');
+    console.log('env', env);
+    return {
+        entry:'./src/app.js',
     output: {
         path : path.join(__dirname, 'public'), //should be absolute path
         filename: 'bundle.js'
@@ -17,19 +21,32 @@ module.exports={
             },
             {   //css loader takes the css and converts it to js syntax and the style loader takes the js syntaxed css and puts in DOM
                 test : /\.s?css$/,  //this will make 's' optional as we are using reset library  ? reps escape char 
-                use : [
-                    'style-loader',
-                    'css-loader', // for css loader 
-                    'sass-loader' //sass loader takes node-sass loader to convert it into css
-                ]
-
+                use : CSSExtract.extract({
+                    use: [
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                sourceMap: true
+                            }
+                        },
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                sourceMap: true
+                            }
+                        },
+                    ]
+                })
             }
         ]
     },
-    devtool: 'cheap-module-eval-source-map', //to get the error in module  like addoption.js not in bunlde.js
+    plugins: [
+        CSSExtract
+    ],
+    devtool: isProduction ? 'source-map' : 'inline-source-map', //to get the error in module  like addoption.js not in bunlde.js
     devServer : {
         contentBase: path.join(__dirname, 'public'),
         historyApiFallback: true
     }
-    
+}
 };
