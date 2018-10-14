@@ -8,7 +8,7 @@ module.exports = (env) => {
     return {
         entry:'./src/app.js',
     output: {
-        path : path.join(__dirname, 'public'), //should be absolute path
+        path : path.join(__dirname, 'public','dist'), //should be absolute path
         filename: 'bundle.js'
     },
     //we have to use babel in webpack... so whenever their is js file then run it through babel loader and convert it into modules
@@ -46,7 +46,8 @@ module.exports = (env) => {
     devtool: isProduction ? 'source-map' : 'inline-source-map', //to get the error in module  like addoption.js not in bunlde.js
     devServer : {
         contentBase: path.join(__dirname, 'public'),
-        historyApiFallback: true
+        historyApiFallback: true,
+        publicPath: '/dist/'
     }
 }
 };
