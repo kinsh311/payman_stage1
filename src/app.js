@@ -8,7 +8,8 @@ import {addExpense} from './actions/expenses';
 import visibilityFilter from './selectors/expenses';
 import 'normalize.css/normalize.css'; //dig config rules
 import './styles/styles.scss';
-
+import './firebase/firebase';
+// import './playground/promises';
 const store = configureStore();
 
 store.subscribe(()=>{
